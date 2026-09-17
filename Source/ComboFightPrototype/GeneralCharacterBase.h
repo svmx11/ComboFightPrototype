@@ -24,6 +24,9 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AbilitySystem")
 	class UGeneralAttributeSet* AttributeSet;
 
+	UPROPERTY(VisibleAnywhere, Category = "Combat")
+	TObjectPtr<USceneComponent> LockPointComponent;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AbilitySystem")
 	EGameplayEffectReplicationMode AscReplicationMode = EGameplayEffectReplicationMode::Mixed;
@@ -44,5 +47,8 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
+
+	UFUNCTION(BlueprintPure, Category = "Combat")
+	FVector GetLockPointLocation() const { return LockPointComponent->GetComponentLocation(); }
 
 };

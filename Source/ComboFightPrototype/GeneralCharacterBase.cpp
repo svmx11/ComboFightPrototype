@@ -26,6 +26,10 @@ AGeneralCharacterBase::AGeneralCharacterBase()
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
 
+	LockPointComponent = CreateDefaultSubobject<USceneComponent>(TEXT("LockPoint"));
+	LockPointComponent->SetupAttachment(GetMesh());
+	LockPointComponent->SetRelativeLocation(FVector(0.f, 0.f, 60.f));
+
 	// Configure character movement
 	GetCharacterMovement()->bOrientRotationToMovement = true;
 	GetCharacterMovement()->RotationRate = FRotator(0.0f, 500.0f, 0.0f);
